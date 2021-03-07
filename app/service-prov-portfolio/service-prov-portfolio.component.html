@@ -1,0 +1,13 @@
+<p>
+service-prov-portfolio works!
+</p>
+
+<h1>BusinessName: {{ServiceProvider.businessName}} </h1>
+<h4>State: {{ServiceProvider.state}} </h4>
+<h4>Services: </h4>
+
+<ul *ngFor="let provider of serviceproviders">
+   <li> {{provider.serviceType}} </li>
+</ul>
+
+<a href={{ServiceProvider.websiteURL}}>Visit Site </a>

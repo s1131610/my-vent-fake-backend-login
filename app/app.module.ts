@@ -14,6 +14,7 @@ import { LoginComponent } from './login';
 import { RegisterComponent } from './register';
 import { AlertComponent } from './_components';
 import { ServiceProvPortfolioComponent } from './service-prov-portfolio/service-prov-portfolio.component';
+import { SearchProvidersComponent } from './search-providers/search-providers.component';
 
 @NgModule({
     imports: [
@@ -28,7 +29,8 @@ import { ServiceProvPortfolioComponent } from './service-prov-portfolio/service-
         LoginComponent,
         RegisterComponent,
         AlertComponent,
-        ServiceProvPortfolioComponent
+        ServiceProvPortfolioComponent,
+        SearchProvidersComponent
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
