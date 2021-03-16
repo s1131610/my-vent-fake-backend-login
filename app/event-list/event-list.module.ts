@@ -19,4 +19,4 @@ import { AddEditComponent } from './add-edit.component';
         AddEditComponent
     ]
 })
-export class UsersModule { }
+export class EventListModule { }

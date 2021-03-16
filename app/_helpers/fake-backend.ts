@@ -6,6 +6,8 @@ import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
 // array in local storage for registered users
 let users = JSON.parse(localStorage.getItem('users')) || [];
 
+let events = JSON.parse(localStorage.getItem('events')) || [];
+
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -28,6 +30,10 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                     return getUsers();
                 case url.match(/\/users\/\d+$/) && method === 'DELETE':
                     return deleteUser();
+                case url.endsWith('/events') && method === 'GET':
+                    return getEvents();
+                case url.endsWith('/events/create') && method === 'POST':
+                    return createEvent();
                 default:
                     // pass through any requests not handled above
                     return next.handle(request);
@@ -74,6 +80,26 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             localStorage.setItem('users', JSON.stringify(users));
             return ok();
         }
+
+        function getEvents() {
+            if (!isLoggedIn()) return unauthorized();
+            return ok(events);
+        }
+        function createEvent() {
+            const event = body
+
+            // make sure evnt doesnt already exist
+            //if (users.find(x => x.email === user.email)) {
+            //    return error('email "' + user.email + '" is already used')
+            //}
+
+            event.id = events.length ? Math.max(...events.map(x => x.id)) + 1 : 1;
+            events.push(event);
+            localStorage.setItem('events', JSON.stringify(events));
+
+            return ok();
+        }
+
 
         // helper functions
 

@@ -3,8 +3,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
-import { UserService, AlertService } from '../_services';
-import { MustMatch } from '../_helpers';
+import { EventService, AlertService } from '../_services';
+
+//import { MustMatch } from '../_helpers';
 
 @Component({ templateUrl: 'add-edit.component.html' })
 export class AddEditComponent implements OnInit {
@@ -18,7 +19,7 @@ export class AddEditComponent implements OnInit {
         private formBuilder: FormBuilder,
         private route: ActivatedRoute,
         private router: Router,
-        private userService: UserService,
+        private eventService: EventService,
         private alertService: AlertService
     ) {}
 
@@ -33,21 +34,15 @@ export class AddEditComponent implements OnInit {
         }
 
         this.form = this.formBuilder.group({
-            title: ['', Validators.required],
-            firstName: ['', Validators.required],
-            lastName: ['', Validators.required],
-            email: ['', [Validators.required, Validators.email]],
-            role: ['', Validators.required],
-            password: ['', [Validators.minLength(6), this.isAddMode ? Validators.required : Validators.nullValidator]],
-            confirmPassword: ['', this.isAddMode ? Validators.required : Validators.nullValidator]
+            eventName: ['', Validators.required]
         }, {
-            validator: MustMatch('password', 'confirmPassword')
+           // validator: MustMatch('password', 'confirmPassword')
         });
 
         if (!this.isAddMode) {
-            this.userService.getById(this.id)
+       /*     this.eventService.getById(this.id)
                 .pipe(first())
-                .subscribe(x => this.form.patchValue(x));
+                .subscribe(x => this.form.patchValue(x));*/
         }
     }
 
@@ -67,12 +62,12 @@ export class AddEditComponent implements OnInit {
 
         this.loading = true;
         if (this.isAddMode) {
-            this.createUser();
+            //this.createUser();
         } else {
-            this.updateUser();
+            //this.updateUser();
         }
     }
-
+/*
     private createUser() {
         this.userService.create(this.form.value)
             .pipe(first())
@@ -102,4 +97,5 @@ export class AddEditComponent implements OnInit {
                 }
             });
     }
+    */
 }
