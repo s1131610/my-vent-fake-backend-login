@@ -5,5 +5,5 @@ export class Event {
     id: number;
     eventMgrID: number;
     eventName: string;
-    eventDate: Date; 
+    eventDate: string; 
 }
