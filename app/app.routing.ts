@@ -7,6 +7,8 @@ import { RegisterComponent } from './register';
 import { ServiceProvPortfolioComponent } from './service-prov-portfolio/service-prov-portfolio.component';
 import { SearchProvidersComponent} from './search-providers/search-providers.component'
 import { LayoutComponent } from './event-list/layout.component';
+import { ListComponent } from './event-list/list.component';
+import { AddEditComponent } from './event-list/add-edit.component';
 
 import { AuthGuard } from './_helpers';
 
@@ -16,7 +18,12 @@ const routes: Routes = [
     { path: 'register', component: RegisterComponent },
     { path: 'service-prov-portfolio', component: ServiceProvPortfolioComponent},    
     { path: 'search-providers', component: SearchProvidersComponent},
-    {path: 'event-list', component: LayoutComponent},
+    {path: 'event-list', component: LayoutComponent,
+        children: [
+            { path: '', component: ListComponent },
+            { path: 'add', component: AddEditComponent },
+            { path: 'edit/:id', component: AddEditComponent }
+        ]},
     // otherwise redirect to home
     { path: '**', redirectTo: '' }
 ];

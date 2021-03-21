@@ -12,6 +12,8 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 import { LayoutComponent } from './event-list/layout.component';
+import { ListComponent } from './event-list/list.component';
+import { AddEditComponent } from './event-list/add-edit.component';
 import { RegisterComponent } from './register';
 import { AlertComponent } from './_components';
 import { ServiceProvPortfolioComponent } from './service-prov-portfolio/service-prov-portfolio.component';
@@ -30,6 +32,8 @@ import { SearchProvidersComponent } from './search-providers/search-providers.co
         LoginComponent,
         RegisterComponent,
         LayoutComponent,
+        ListComponent,
+        AddEditComponent,
         AlertComponent,
         ServiceProvPortfolioComponent,
         SearchProvidersComponent
