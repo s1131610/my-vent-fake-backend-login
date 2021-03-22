@@ -47,7 +47,6 @@ export class AddEditComponent implements OnInit {
                 .subscribe(x => this.form.patchValue(x));*/
         }
 
-        console.log("KAK ngOnInit - form.controls: " + this.form.controls.eventDate);
     }
 
     // convenience getter for easy access to form fields
@@ -77,20 +76,19 @@ export class AddEditComponent implements OnInit {
     }
 
     private addEvent() {
-        this.eventService.createEvent(this.form.value);
-        console.log("KAK addEvent - adding event");
-
-           /* .pipe(first())
+        console.log("KAK addEvent - adding event, form-value: " , this.form.value);
+        this.eventService.createEvent(this.form.value)
+        .pipe(first())
             .subscribe({
                 next: () => {
-                    this.alertService.success('User added', { keepAfterRouteChange: true });
+                    /this.alertService.success('User added', { keepAfterRouteChange: true });
                     this.router.navigate(['../'], { relativeTo: this.route });
                 },
                 error: error => {
                     this.alertService.error(error);
                     this.loading = false;
                 }
-            });*/
+            });
     }
 /*
     private updateUser() {

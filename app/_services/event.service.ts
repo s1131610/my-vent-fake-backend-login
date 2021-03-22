@@ -11,6 +11,7 @@ export class EventService {
         return this.http.get<Event[]>(`/events`);
     }
    createEvent(event: Event) {
+        console.log("KAK event-service.createEvent - creating event:",event);
         return this.http.post(`/events/create`, event);
     }
 
