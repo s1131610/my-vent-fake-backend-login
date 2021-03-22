@@ -27,7 +27,7 @@ export class AddEditComponent implements OnInit {
     ngOnInit() {
         this.id = this.route.snapshot.params['id'];
         this.isAddMode = !this.id;
-        
+        console.log("KAK - ngOnInit - id: " + this.id + " isAddMode: " + this.isAddMode);
         // password not required in edit mode
         const passwordValidators = [Validators.minLength(6)];
         if (this.isAddMode) {
@@ -35,7 +35,8 @@ export class AddEditComponent implements OnInit {
         }
 
         this.form = this.formBuilder.group({
-            eventName: ['', Validators.required]
+            eventName: ['', Validators.required],
+            eventDate: ['', Validators.required]
         }, {
            // validator: MustMatch('password', 'confirmPassword')
         });
@@ -45,12 +46,15 @@ export class AddEditComponent implements OnInit {
                 .pipe(first())
                 .subscribe(x => this.form.patchValue(x));*/
         }
+
+        console.log("KAK ngOnInit - form.controls: " + this.form.controls.eventDate);
     }
 
     // convenience getter for easy access to form fields
     get f() { return this.form.controls; }
 
     onSubmit() {
+        console.log("KAK onSubmit - on submit isAddMode: " + this.isAddMode);
         this.submitted = true;
 
         // reset alerts on submit
@@ -63,15 +67,20 @@ export class AddEditComponent implements OnInit {
 
         this.loading = true;
         if (this.isAddMode) {
-            //this.createUser();
+            console.log("KAK onSubmit - add event");
+            this.addEvent();
         } else {
-            //this.updateUser();
+            console.log("KAK onSubmit - update event");
+
+           // this.updateEvent();
         }
     }
-/*
-    private createUser() {
-        this.userService.create(this.form.value)
-            .pipe(first())
+
+    private addEvent() {
+        this.eventService.createEvent(this.form.value);
+        console.log("KAK addEvent - adding event");
+
+           /* .pipe(first())
             .subscribe({
                 next: () => {
                     this.alertService.success('User added', { keepAfterRouteChange: true });
@@ -81,9 +90,9 @@ export class AddEditComponent implements OnInit {
                     this.alertService.error(error);
                     this.loading = false;
                 }
-            });
+            });*/
     }
-
+/*
     private updateUser() {
         this.userService.update(this.id, this.form.value)
             .pipe(first())

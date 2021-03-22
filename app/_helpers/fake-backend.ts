@@ -86,12 +86,12 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             return ok(events);
         }
         function createEvent() {
-            const event = body
-
+           const event = body
+            console.log("KAK createEvent - event: " + event);
             // make sure evnt doesnt already exist
-            //if (users.find(x => x.email === user.email)) {
-            //    return error('email "' + user.email + '" is already used')
-            //}
+            if (events.find(x => x.eventName === event.eventName)) {
+               return error('event "' + event.eventName + '" is already used')
+            }
 
             event.id = events.length ? Math.max(...events.map(x => x.id)) + 1 : 1;
             events.push(event);
