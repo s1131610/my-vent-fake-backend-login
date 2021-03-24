@@ -19,13 +19,13 @@ export class EventService {
 
     return this.http.post(`/events/update/${id}`, params);
   }
-
+ deleteEvent(id: number) {
+        return this.http.delete(`/events/delete/${id}`);
+    }
   getById(id: string) {
     return this.http.get<Event>(`/events/get/${id}`);
   }
 
-  /* delete(id: number) {
-        return this.http.delete(`/events/${id}`);
-    }
-    */
+ 
+  
 }

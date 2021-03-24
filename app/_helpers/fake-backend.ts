@@ -50,6 +50,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
           return updateEvent();
         case url.match(/\/events\/get\/\d+$/) && method === "GET":
           return getEvent();
+        case url.match(/\/events\/delete\/\d+$/) && method === "DELETE":
+          return deleteEvent();
         default:
           // pass through any requests not handled above
           console.log("KAK fake-backend.handleRoute - pass through ");
@@ -139,6 +141,14 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
       return ok();
     }
+function deleteEvent() {
+      if (!isLoggedIn()) return unauthorized();
+
+      events = events.filter(x => x.id !== idFromUrl());
+      localStorage.setItem("events", JSON.stringify(events));
+      return ok();
+    }
+
 
     // helper functions
 
