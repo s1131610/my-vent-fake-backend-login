@@ -47,9 +47,9 @@ export class AddEditComponent implements OnInit {
     );
 
     if (!this.isAddMode) {
-      /*     this.eventService.getById(this.id)
+           this.eventService.getById(this.id)
                 .pipe(first())
-                .subscribe(x => this.form.patchValue(x));*/
+                .subscribe(x => this.form.patchValue(x));
     }
   }
 

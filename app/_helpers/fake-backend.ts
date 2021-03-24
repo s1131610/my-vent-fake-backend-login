@@ -48,6 +48,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
           return createEvent();
         case url.match(/\/events\/update\/\d+$/) && method === "POST":
           return updateEvent();
+        case url.match(/\/events\/get\/\d+$/) && method === "GET":
+          return getEvent();
         default:
           // pass through any requests not handled above
           console.log("KAK fake-backend.handleRoute - pass through ");
@@ -102,6 +104,16 @@ export class FakeBackendInterceptor implements HttpInterceptor {
       if (!isLoggedIn()) return unauthorized();
       return ok(events);
     }
+
+    function getEvent() {
+      if (!isLoggedIn()) return unauthorized();
+      const event = events.find(x => x.id === idFromUrl());
+      if (!event) {
+        return error("event is not found");
+      }
+      return ok(event);
+    }
+
     function createEvent() {
       const event = body;
       console.log("KAK fake-backend.createEvent - event: ", event);
