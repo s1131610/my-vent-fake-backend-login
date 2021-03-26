@@ -18,6 +18,7 @@ import { RegisterComponent } from './register';
 import { AlertComponent } from './_components';
 import { ServiceProvPortfolioComponent } from './service-prov-portfolio/service-prov-portfolio.component';
 import { SearchProvidersComponent } from './search-providers/search-providers.component';
+import { EventDetailsComponent } from './event-details/event-details.component';
 
 @NgModule({
     imports: [
@@ -36,7 +37,8 @@ import { SearchProvidersComponent } from './search-providers/search-providers.co
         AddEditComponent,
         AlertComponent,
         ServiceProvPortfolioComponent,
-        SearchProvidersComponent
+        SearchProvidersComponent,
+        EventDetailsComponent
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

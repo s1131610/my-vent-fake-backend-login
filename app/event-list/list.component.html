@@ -9,7 +9,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let event of events">
-      <td><a routerLink="/event-details/{{event.id}}" class='eventLinks'>{{event.eventName}}</a></td>
+      <td><a routerLink="/event-details" class='eventLinks'>{{event.eventName}}</a></td>
       <td>{{event.eventDate}}</td>
       <td style="white-space: nowrap">
         <a routerLink="edit/{{event.id}}" class="btn btn-sm btn-primary mr-1">Edit</a>

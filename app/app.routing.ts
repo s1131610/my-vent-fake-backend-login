@@ -9,6 +9,7 @@ import { SearchProvidersComponent} from './search-providers/search-providers.com
 import { LayoutComponent } from './event-list/layout.component';
 import { ListComponent } from './event-list/list.component';
 import { AddEditComponent } from './event-list/add-edit.component';
+import { EventDetailsComponent } from './event-details/event-details.component';
 
 import { AuthGuard } from './_helpers';
 
@@ -18,6 +19,7 @@ const routes: Routes = [
     { path: 'register', component: RegisterComponent },
     { path: 'service-prov-portfolio', component: ServiceProvPortfolioComponent},    
     { path: 'search-providers', component: SearchProvidersComponent},
+    {path: 'event-details', component: EventDetailsComponent},
     {path: 'event-list', component: LayoutComponent,
         children: [
             { path: '', component: ListComponent },
